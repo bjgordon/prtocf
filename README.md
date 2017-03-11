@@ -1,24 +1,17 @@
-# README
+# Prtocf - Pull Request to Cloud Foundry
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prtocf will simplify checking of PRs (Pull Requests) by deploying the branch to cloud foundry. 
+For now it is only intended for use with jekyll sites that are built with CircleCI.
 
-Things you may want to cover:
+Inspired by [QA Fire](https://github.com/AusDTO/qa-fire)
 
-* Ruby version
+## How it works
 
-* System dependencies
+When a PR is created:
+1. Circle will build the branch.
+2. If the tests pass, Circle sends a webhook to Prtocf.
+3. Prtocf will fetch the Circle build artifacts, and push them to Cloud Foundry.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+When the PR is closed:
+1. Github sends a webhook to Prtocf.
+2. Prtocf will delete the Cloud Foundry application.
